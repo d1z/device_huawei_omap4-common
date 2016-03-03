@@ -18,6 +18,8 @@ DEVCOMMON_PATH := device/huawei/omap4-common
 
 PRODUCT_CHARACTERISTICS := default
 
+DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay/common
+
 # Audio Packages
 PRODUCT_PACKAGES += \
     tinycap \
