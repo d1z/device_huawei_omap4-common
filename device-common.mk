@@ -210,4 +210,31 @@ PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0 \
     wlan.wfd.hdcp=disable
 
+# GPU producer to CPU consumer not supported
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.bq.gpu_to_cpu_unsupported=1
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    dolby.audio.hdmi.channels=0
+
+# Fix deaf microphone
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.config.dualmic=true
+
+# Fast mass storage
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.vold.umsdirtyratio=50
+
+# FM
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.config.fm_type=libbcmfm_if
+
+# OTG
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.isUsbOtgEnabled=true
+
+# Call recording
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.call_recording.enabled=1
+
 $(call inherit-product, hardware/broadcom/wlan/bcmdhd/firmware/bcm4330/device-bcm.mk)
