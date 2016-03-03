@@ -165,4 +165,35 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.strictmode.visual=0 \
     persist.sys.strictmode.disable=1
 
+# RIL and modem settings
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.telephony.ril_class=RIL \
+    rild.libpath=/system/lib/libxgold-ril.so \
+    mobiledata.interfaces=rmnet0 \
+    ro.ril.enable.dtm=1 \
+    gsm.sim.num.pin2=3 \
+    gsm.sim.num.puk2=10 \
+    ro.config.endstksession=true \
+    ro.config.sim_hot_swap=true \
+    audioril.lib=libhuawei-audio-ril.so \
+    modem.audio=1
+
+# hsdpa+
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.config.hspap_hsdpa_open=1 \
+    ro.ril.hsxpa=2 \
+    ro.ril.gprsclass=10 \
+    ro.ril.hsdpa.category=14
+
+# Other phone network settings
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.telephony.call_ring.delay=1 \
+    ring.delay=1 \
+    telephony.lteOnGsmDevice=0 \
+    ro.use_data_netmgrd=true \
+    persist.data.netmgrd.qos.enable=false \
+    persist.radio.add_power_save=1 \
+    ro.ril.disable.power.collapse=0 \
+    ro.config.hw_gcf_mms = true
+
 $(call inherit-product, hardware/broadcom/wlan/bcmdhd/firmware/bcm4330/device-bcm.mk)
