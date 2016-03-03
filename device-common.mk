@@ -196,4 +196,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.ril.disable.power.collapse=0 \
     ro.config.hw_gcf_mms = true
 
+# Sensors settings
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.config.hw_proximitySensor=true \
+    ro.config.hw_GSensorOptimize=true
+
 $(call inherit-product, hardware/broadcom/wlan/bcmdhd/firmware/bcm4330/device-bcm.mk)
