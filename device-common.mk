@@ -201,4 +201,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.config.hw_proximitySensor=true \
     ro.config.hw_GSensorOptimize=true
 
+# OpenGL settings
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.opengles.version=131072
+
 $(call inherit-product, hardware/broadcom/wlan/bcmdhd/firmware/bcm4330/device-bcm.mk)
