@@ -40,10 +40,6 @@ PRODUCT_PACKAGES += \
     power.front \
     lights.omap4
 
-# Replace Camera2 to Snap
-PRODUCT_PACKAGES += \
-    Snap
-
 # init.d
 PRODUCT_COPY_FILES += \
     $(DEVCOMMON_PATH)/utilities/init.d/11frandom:system/etc/init.d/11frandom
