@@ -74,6 +74,15 @@ PRODUCT_PACKAGES += \
     optimizedb \
     optimizestorage
 
+# Post init script
+PRODUCT_PACKAGES += \
+    post-init.sh
+
+# Supolicy
+PRODUCT_PACKAGES += \
+    supolicy \
+    libsupol.so
+
 # Network tools
 PRODUCT_PACKAGES += \
     libpcap \
