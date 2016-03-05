@@ -1,0 +1,17 @@
+# rild
+allow rild radio_data_file:dir { r_dir_perms setattr };
+allow rild system_data_file:dir create_dir_perms;
+allow rild system_data_file:file create_file_perms;
+allow rild self:process execmem;
+allow rild block_device:dir search;
+
+allow rild sysfs:file write;
+allow rild unlabeled:dir getattr;
+allow rild unlabeled:dir search;
+allow rild unlabeled:file { read write getattr open };
+
+allow rild imcdownload_app_exec:file { read getattr open execute execute_no_trans ioctl };
+allow rild injection_nv_exec:file { read getattr open execute execute_no_trans ioctl };
+
+allow rild gpsd:dir search;
+allow rild gpsd:file r_file_perms;

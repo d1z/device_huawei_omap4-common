@@ -1,0 +1,53 @@
+/dev/akm8975_aot                u:object_r:sensors_device:s0
+/dev/akm8975_dev                u:object_r:sensors_device:s0
+
+# Wireless
+/dev/rfkill                     u:object_r:rfkill_device:s0
+
+# rild
+/modem/modem_image/HWT6260*     u:object_r:radio_data_file:s0
+/modem/nvm1/*                   u:object_r:radio_data_file:s0
+/modem/nvm2/*                   u:object_r:radio_data_file:s0
+/dev/tiler                      u:object_r:video_device:s0
+/dev/i2c-2                      u:object_r:camera_device:s0
+/dev/block/mmcblk0p10           u:object_r:radio_device:s0
+/dev/block/mmcblk0p11           u:object_r:radio_device:s0
+/dev/block/mmcblk0p12           u:object_r:radio_device:s0
+/dev/xmd-tty0                   u:object_r:radio_device:s0
+/dev/xmd-tty8                   u:object_r:radio_device:s0
+/dev/xmd-boot0                  u:object_r:radio_device:s0
+
+/dev/ttyGS2                     u:object_r:console_device:s0
+
+/dev/audience_es305             u:object_r:audio_device:s0
+/dev/ttyO0                      u:object_r:audio_device:s0
+
+# GPS
+/dev/ttyO3                      u:object_r:gps_device:s0
+/data/gps/*                     u:object_r:gps_data_file:s0
+/data/system/gps(/.*)?          u:object_r:gps_data_file:s0
+/system/lib/hw/gps.omap4.so     u:object_r:gps_data_file:s0
+/system/bin/glgps               u:object_r:gpsd_exec:s0
+
+# BT
+/dev/ttyO1                      u:object_r:hci_attach_dev:s0
+
+# surface flinger
+/dev/dsscomp                    u:object_r:graphics_device:s0
+
+# System binaries
+/system/bin/pvrsrvinit          u:object_r:pvrsrvinit_exec:s0
+/system/bin/uim-sysfs           u:object_r:uim_sysfs_exec:s0
+/system/bin/smc_pa_ctrl         u:object_r:smc_pa_exec:s0
+/system/bin/setup_fs            u:object_r:setup_fs_exec:s0
+/system/bin/akmd8975            u:object_r:akmd8975_exec:s0
+
+/system/bin/IMCdownload_App     u:object_r:imcdownload_app_exec:s0
+/system/bin/Injection_nv        u:object_r:injection_nv_exec:s0
+
+# Post-init script
+/sbin/post-init.sh              u:object_r:postinit_exec:s0
+
+# Hardware tunables
+/sys/devices/platform/omapdss/manager0/cpr_coef       -- u:object_r:sysfs_hardware:s0
+/sys/devices/platform/omapdss/manager0/cpr_enable     -- u:object_r:sysfs_hardware:s0

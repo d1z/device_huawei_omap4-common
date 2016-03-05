@@ -130,3 +130,37 @@ BOARD_SYSTEMIMAGE_JOURNAL_SIZE := 0
 
 # Recovery
 TARGET_PREBUILT_RECOVERY_KERNEL := $(COMMON_PATH)/recovery/recovery_kernel
+
+# SELinux
+BOARD_SEPOLICY_DIRS += \
+    $(COMMON_PATH)/sepolicy
+
+BOARD_SEPOLICY_UNION += \
+    akmd8975.te \
+    bluetooth.te \
+    debuggerd.te \
+    device.te \
+    domain.te \
+    file_contexts \
+    file.te \
+    genfs_contexts \
+    gpsd.te \
+    imcdownload_app.te \
+    init.te \
+    injection_nv.te \
+    kernel.te \
+    mediaserver.te \
+    netd.te \
+    postinit.te \
+    pvrsrvinit.te \
+    rild.te \
+    servicemanager.te \
+    setup_fs.te \
+    shell.te \
+    smc_pa.te \
+    system_app.te \
+    system_server.te \
+    uim_sysfs.te \
+    untrusted_app.te \
+    wpa_supplicant.te \
+    zygote.te

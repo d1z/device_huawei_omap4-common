@@ -1,0 +1,4 @@
+type imcdownload_app, domain;
+type imcdownload_app_exec, exec_type, file_type;
+
+allow imcdownload_app radio_device:chr_file { read write ioctl open };

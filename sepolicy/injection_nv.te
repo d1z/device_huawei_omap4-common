@@ -1,0 +1,4 @@
+type injection_nv, domain;
+type injection_nv_exec, exec_type, file_type;
+
+allow injection_nv radio_device:chr_file { read write ioctl open };
