@@ -1,0 +1,15 @@
+
+project packages/providers/ThemesProvider/
+diff --git a/packages/providers/ThemesProvider/src/org/cyanogenmod/themes/provider/util/IconPreviewGenerator.java b/packages/providers/ThemesProvider/src/org/cyanogenmod/themes/provider/util/IconPreviewGenerator.java
+index b1857d8..6fa208a 100644
+--- a/packages/providers/ThemesProvider/src/org/cyanogenmod/themes/provider/util/IconPreviewGenerator.java
++++ b/packages/providers/ThemesProvider/src/org/cyanogenmod/themes/provider/util/IconPreviewGenerator.java
+@@ -29,7 +29,7 @@ public class IconPreviewGenerator {
+     private static final ComponentName COMPONENT_CAMERANEXT =
+             new ComponentName("com.cyngn.cameranext", "com.android.camera.CameraLauncher");
+     private static final ComponentName COMPONENT_CAMERA =
+-            new ComponentName("com.android.camera2", "com.android.camera.CameraLauncher");
++            new ComponentName("org.cyanogenmod.snap", "com.android.camera.CameraLauncher");
+     private static final ComponentName COMPONENT_BROWSER =
+             new ComponentName("com.android.browser", "com.android.browser.BrowserActivity");
+     private static final ComponentName COMPONENT_SETTINGS =

@@ -1,0 +1,14 @@
+
+project frameworks/av/
+diff --git a/frameworks/av/media/libstagefright/MediaBuffer.cpp b/frameworks/av/media/libstagefright/MediaBuffer.cpp
+index 1f80a47..f65c66f 100644
+--- a/frameworks/av/media/libstagefright/MediaBuffer.cpp
++++ b/frameworks/av/media/libstagefright/MediaBuffer.cpp
+@@ -135,6 +135,7 @@ size_t MediaBuffer::range_length() const {
+ void MediaBuffer::set_range(size_t offset, size_t length) {
+     if ((mGraphicBuffer == NULL) && (offset + length > mSize)) {
+         ALOGE("offset = %zu, length = %zu, mSize = %zu", offset, length, mSize);
++        offset = 0;
+     }
+     CHECK((mGraphicBuffer != NULL) || (offset + length <= mSize));
+ 

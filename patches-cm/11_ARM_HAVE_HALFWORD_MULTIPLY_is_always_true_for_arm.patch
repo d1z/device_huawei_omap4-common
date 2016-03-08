@@ -1,0 +1,22 @@
+
+project frameworks/av/
+diff --git a/frameworks/av/services/audioflinger/AudioResampler.cpp b/frameworks/av/services/audioflinger/AudioResampler.cpp
+index 0f4eaa5..5875e08 100644
+--- a/frameworks/av/services/audioflinger/AudioResampler.cpp
++++ b/frameworks/av/services/audioflinger/AudioResampler.cpp
+@@ -33,14 +33,11 @@
+ #endif
+ 
+ #ifdef __arm__
+-#include <machine/cpu-features.h>
++    #define ASM_ARM_RESAMP1 // enable asm optimisation for ResamplerOrder1
+ #endif
+ 
+ namespace android {
+ 
+-#ifdef __ARM_HAVE_HALFWORD_MULTIPLY // optimized asm option
+-    #define ASM_ARM_RESAMP1 // enable asm optimisation for ResamplerOrder1
+-#endif // __ARM_HAVE_HALFWORD_MULTIPLY
+ // ----------------------------------------------------------------------------
+ 
+ class AudioResamplerOrder1 : public AudioResampler {

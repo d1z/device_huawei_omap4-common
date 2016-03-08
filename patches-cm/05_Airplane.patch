@@ -1,0 +1,33 @@
+
+project packages/services/Telephony/
+diff --git a/packages/services/Telephony/src/com/android/phone/PhoneGlobals.java b/packages/services/Telephony/src/com/android/phone/PhoneGlobals.java
+index aafb273..72d35dc 100644
+--- a/packages/services/Telephony/src/com/android/phone/PhoneGlobals.java
++++ b/packages/services/Telephony/src/com/android/phone/PhoneGlobals.java
+@@ -829,6 +829,26 @@ public class PhoneGlobals extends ContextWrapper {
+                         System.AIRPLANE_MODE_ON, 0) == 0;
+                 for (Phone ph : mPhones) {
+                     ph.setRadioPower(enabled);
++
++                    // A workaround for incorrect Huawei radio wakeup
++                    // Modem needs some network state-changing action to register on network
++                    if (enabled)
++                        new Thread() {
++                            public void run() {
++                                //Log.d(LOG_TAG, ">>>Changing network type ------------------------------------------>");
++                                TelephonyManager tm = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
++
++                                int currentType = tm.getPreferredNetworkType();
++
++                                if (currentType == 4)
++                                    tm.setPreferredNetworkType(1); // NETWORK_MODE_GSM_ONLY
++                                else
++                                    tm.setPreferredNetworkType(4); // NETWORK_MODE_CDMA_ONLY
++
++                                tm.setPreferredNetworkType(currentType);
++                                //Log.d(LOG_TAG, "<<<Changed network type ------------------------------------------<");
++                            }
++                        }.start();
+                 }
+             } else if (action.equals(TelephonyIntents.ACTION_ANY_DATA_CONNECTION_STATE_CHANGED)) {
+                 if (VDBG) Log.d(LOG_TAG, "mReceiver: ACTION_ANY_DATA_CONNECTION_STATE_CHANGED");

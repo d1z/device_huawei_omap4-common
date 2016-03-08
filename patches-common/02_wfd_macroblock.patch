@@ -1,0 +1,32 @@
+
+project frameworks/av/
+diff --git a/frameworks/av/media/libstagefright/wifi-display/Android.mk b/frameworks/av/media/libstagefright/wifi-display/Android.mk
+index f70454a..2c56ffb 100644
+--- a/frameworks/av/media/libstagefright/wifi-display/Android.mk
++++ b/frameworks/av/media/libstagefright/wifi-display/Android.mk
+@@ -30,6 +30,10 @@ LOCAL_SHARED_LIBRARIES:= \
+         libui                           \
+         libutils                        \
+ 
++ifdef BOARD_NO_INTRA_MACROBLOCK_MODE_SUPPORT
++LOCAL_CFLAGS := -DBOARD_NO_INTRA_MACROBLOCK_MODE_SUPPORT
++endif
++
+ LOCAL_MODULE:= libstagefright_wfd
+ 
+ LOCAL_MODULE_TAGS:= optional
+diff --git a/frameworks/av/media/libstagefright/wifi-display/source/Converter.cpp b/frameworks/av/media/libstagefright/wifi-display/source/Converter.cpp
+index 2834a66..e2ede91 100644
+--- a/frameworks/av/media/libstagefright/wifi-display/source/Converter.cpp
++++ b/frameworks/av/media/libstagefright/wifi-display/source/Converter.cpp
+@@ -173,8 +173,10 @@ status_t Converter::initEncoder() {
+         mOutputFormat->setInt32("frame-rate", 30);
+         mOutputFormat->setInt32("i-frame-interval", 15);  // Iframes every 15 secs
+ 
++#ifndef BOARD_NO_INTRA_MACROBLOCK_MODE_SUPPORT
+         // Configure encoder to use intra macroblock refresh mode
+         mOutputFormat->setInt32("intra-refresh-mode", OMX_VIDEO_IntraRefreshCyclic);
++#endif
+ 
+         int width, height, mbs;
+         if (!mOutputFormat->findInt32("width", &width)

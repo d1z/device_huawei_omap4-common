@@ -1,0 +1,15 @@
+
+project packages/apps/Settings/
+diff --git a/packages/apps/Settings/res/xml/power_usage_summary.xml b/packages/apps/Settings/res/xml/power_usage_summary.xml
+index 87cee53..d2e9d7b 100644
+--- a/packages/apps/Settings/res/xml/power_usage_summary.xml
++++ b/packages/apps/Settings/res/xml/power_usage_summary.xml
+@@ -28,7 +28,7 @@
+             android:key="app_perf_profiles_enabled"
+             android:title="@string/autoperf_title"
+             android:summary="@string/autoperf_summary"
+-            android:defaultValue="true" />
++            android:defaultValue="false" />
+ 
+     <com.android.settings.cyanogenmod.GlobalSettingSwitchPreference
+             android:key="low_power"

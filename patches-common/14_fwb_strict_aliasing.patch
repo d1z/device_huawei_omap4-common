@@ -1,0 +1,46 @@
+
+project frameworks/base/
+diff --git a/frameworks/base/core/jni/android_view_Surface.cpp b/frameworks/base/core/jni/android_view_Surface.cpp
+index 8d194c6..4cf8859 100644
+--- a/frameworks/base/core/jni/android_view_Surface.cpp
++++ b/frameworks/base/core/jni/android_view_Surface.cpp
+@@ -267,7 +267,14 @@ static jlong nativeLockCanvas(JNIEnv* env, jclass clazz,
+ 
+     if (dirtyRectPtr) {
+         SkCanvas* nativeCanvas = GraphicsJNI::getNativeCanvas(env, canvasObj);
+-        nativeCanvas->clipRect( SkRect::Make(reinterpret_cast<const SkIRect&>(dirtyRect)) );
++        SkRect r;
++        android::Point lt = dirtyRect.leftTop();
++        android::Point rb = dirtyRect.rightBottom();
++        r.set(SkIntToScalar(lt.x),
++              SkIntToScalar(lt.y),
++              SkIntToScalar(rb.x),
++              SkIntToScalar(rb.y));
++        nativeCanvas->clipRect(r);
+     }
+ 
+     if (dirtyRectObj) {
+diff --git a/frameworks/base/libs/androidfw/ResourceTypes.cpp b/frameworks/base/libs/androidfw/ResourceTypes.cpp
+index 45929c7..a0318f1 100644
+--- a/frameworks/base/libs/androidfw/ResourceTypes.cpp
++++ b/frameworks/base/libs/androidfw/ResourceTypes.cpp
+@@ -4558,7 +4558,7 @@ bool ResTable::stringToFloat(const char16_t* s, size_t len, Res_value* outValue)
+     if (*end == 0) {
+         if (outValue) {
+             outValue->dataType = outValue->TYPE_FLOAT;
+-            *(float*)(&outValue->data) = f;
++            memcpy(&outValue->data, &f, sizeof(float));
+             return true;
+         }
+     }
+@@ -6317,7 +6317,9 @@ void ResTable::print_value(const Package* pkg, const Res_value& value) const
+             }
+         }
+     } else if (value.dataType == Res_value::TYPE_FLOAT) {
+-        printf("(float) %g\n", *(const float*)&value.data);
++        float f;
++        memcpy(&f, &value.data, sizeof(float));
++        printf("(float) %g\n", f);
+     } else if (value.dataType == Res_value::TYPE_DIMENSION) {
+         printf("(dimension) ");
+         print_complex(value.data, false);

@@ -1,0 +1,15 @@
+
+project packages/apps/Gallery2/
+diff --git a/packages/apps/Gallery2/src_pd/com/android/gallery3d/util/IntentHelper.java b/packages/apps/Gallery2/src_pd/com/android/gallery3d/util/IntentHelper.java
+index 8aebfc1..550a5b4 100644
+--- a/packages/apps/Gallery2/src_pd/com/android/gallery3d/util/IntentHelper.java
++++ b/packages/apps/Gallery2/src_pd/com/android/gallery3d/util/IntentHelper.java
+@@ -22,7 +22,7 @@ public class IntentHelper {
+ 
+     public static Intent getCameraIntent(Context context) {
+         return new Intent(Intent.ACTION_MAIN)
+-            .setClassName("com.android.camera2", "com.android.camera.CameraLauncher");
++            .setClassName("org.cyanogenmod.snap", "com.android.camera.CameraLauncher");
+     }
+ 
+     public static Intent getGalleryIntent(Context context) {

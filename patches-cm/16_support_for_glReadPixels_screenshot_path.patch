@@ -1,0 +1,51 @@
+
+project frameworks/native/
+diff --git a/frameworks/native/include/gui/ISurfaceComposer.h b/frameworks/native/include/gui/ISurfaceComposer.h
+index aaf1d46..d5f214e 100644
+--- a/frameworks/native/include/gui/ISurfaceComposer.h
++++ b/frameworks/native/include/gui/ISurfaceComposer.h
+@@ -33,6 +33,12 @@
+ #include <gui/IGraphicBufferAlloc.h>
+ #include <gui/ISurfaceComposerClient.h>
+ 
++#ifndef FORCE_SCREENSHOT_CPU_PATH
++#define SS_CPU_CONSUMER false
++#else
++#define SS_CPU_CONSUMER true
++#endif
++
+ namespace android {
+ // ----------------------------------------------------------------------------
+ 
+@@ -157,7 +163,8 @@ public:
+             Rect sourceCrop, uint32_t reqWidth, uint32_t reqHeight,
+             uint32_t minLayerZ, uint32_t maxLayerZ,
+             bool useIdentityTransform,
+-            Rotation rotation = eRotateNone) = 0;
++            Rotation rotation = eRotateNone,
++            bool isCpuConsumer = SS_CPU_CONSUMER) = 0;
+ #endif
+ 
+     /* Clears the frame statistics for animations.
+diff --git a/frameworks/native/libs/gui/ISurfaceComposer.cpp b/frameworks/native/libs/gui/ISurfaceComposer.cpp
+index b5a4428..b73f10e 100644
+--- a/frameworks/native/libs/gui/ISurfaceComposer.cpp
++++ b/frameworks/native/libs/gui/ISurfaceComposer.cpp
+@@ -110,7 +110,8 @@ public:
+             Rect sourceCrop, uint32_t reqWidth, uint32_t reqHeight,
+             uint32_t minLayerZ, uint32_t maxLayerZ,
+             bool useIdentityTransform,
+-            ISurfaceComposer::Rotation rotation)
++            ISurfaceComposer::Rotation rotation,
++            bool isCpuConsumer)
+     {
+         Parcel data, reply;
+         data.writeInterfaceToken(ISurfaceComposer::getInterfaceDescriptor());
+@@ -122,6 +123,7 @@ public:
+         data.writeInt32(maxLayerZ);
+         data.writeInt32(static_cast<int32_t>(useIdentityTransform));
+         data.writeInt32(static_cast<int32_t>(rotation));
++        data.writeInt32(isCpuConsumer);
+         remote()->transact(BnSurfaceComposer::CAPTURE_SCREEN_DEPRECATED, data, &reply);
+         *heap = interface_cast<IMemoryHeap>(reply.readStrongBinder());
+         *width = reply.readInt32();

@@ -1,0 +1,15 @@
+
+project packages/apps/ThemeChooser/
+diff --git a/packages/apps/ThemeChooser/src/org/cyanogenmod/theme/chooser/WallpaperAndIconPreviewFragment.java b/packages/apps/ThemeChooser/src/org/cyanogenmod/theme/chooser/WallpaperAndIconPreviewFragment.java
+index 08ddb4e..cdb2638 100644
+--- a/packages/apps/ThemeChooser/src/org/cyanogenmod/theme/chooser/WallpaperAndIconPreviewFragment.java
++++ b/packages/apps/ThemeChooser/src/org/cyanogenmod/theme/chooser/WallpaperAndIconPreviewFragment.java
+@@ -62,7 +62,7 @@ public class WallpaperAndIconPreviewFragment extends Fragment
+     private static final ComponentName COMPONENT_CAMERANEXT =
+             new ComponentName("com.cyngn.cameranext", "com.android.camera.CameraLauncher");
+     private static final ComponentName COMPONENT_CAMERA =
+-            new ComponentName("com.android.camera2", "com.android.camera.CameraLauncher");
++            new ComponentName("org.cyanogenmod.snap", "com.android.camera.CameraLauncher");
+     private static final ComponentName COMPONENT_BROWSER =
+             new ComponentName("com.android.browser", "com.android.browser.BrowserActivity");
+     private static final ComponentName COMPONENT_SETTINGS =
