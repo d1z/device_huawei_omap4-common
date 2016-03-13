@@ -17,7 +17,7 @@
 #ifndef _BDROID_BUILDCFG_H
 #define _BDROID_BUILDCFG_H
 
-#define BTM_DEF_LOCAL_NAME   "Huawei U9500"
+#define BTM_DEF_LOCAL_NAME   "Huawei U9200"
 
 #define BLE_INCLUDED TRUE
 #define BTA_GATT_INCLUDED TRUE
