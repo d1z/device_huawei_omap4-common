@@ -50,6 +50,7 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
     $(DEVCOMMON_PATH)/configs/media/media_profiles.xml:system/etc/media_profiles.xml \
     $(DEVCOMMON_PATH)/configs/media/media_codecs.xml:system/etc/media_codecs.xml \
+    $(DEVCOMMON_PATH)/configs/media/media_codecs_ffmpeg.xml:system/etc/media_codecs_ffmpeg.xml \
     $(DEVCOMMON_PATH)/configs/audio/audio_policy.conf:system/etc/audio_policy.conf
 
 # WiFi
