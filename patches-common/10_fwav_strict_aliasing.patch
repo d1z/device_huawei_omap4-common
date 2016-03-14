@@ -29,10 +29,10 @@ index 0d5d7e4..dbd392b 100644
      uint32_t psize = sizeof(effect_param_t) + ((param->psize - 1) / sizeof(int) + 1) * sizeof(int) +
              param->vsize;
 diff --git a/frameworks/av/media/libmediaplayerservice/MediaPlayerFactory.cpp b/frameworks/av/media/libmediaplayerservice/MediaPlayerFactory.cpp
-index aeefb4c..1c29e5e 100644
+index 03fae91..8db0da2 100644
 --- a/frameworks/av/media/libmediaplayerservice/MediaPlayerFactory.cpp
 +++ b/frameworks/av/media/libmediaplayerservice/MediaPlayerFactory.cpp
-@@ -194,15 +194,16 @@ class StagefrightPlayerFactory :
+@@ -211,15 +211,16 @@ class StagefrightPlayerFactory :
          }
  
          if (getDefaultPlayerType() == STAGEFRIGHT_PLAYER) {
@@ -54,10 +54,10 @@ index aeefb4c..1c29e5e 100644
          }
  
 diff --git a/frameworks/av/media/libstagefright/MPEG4Extractor.cpp b/frameworks/av/media/libstagefright/MPEG4Extractor.cpp
-index ec1b104..1ca2006 100644
+index 0e5c3af..175142e 100644
 --- a/frameworks/av/media/libstagefright/MPEG4Extractor.cpp
 +++ b/frameworks/av/media/libstagefright/MPEG4Extractor.cpp
-@@ -1057,12 +1057,15 @@ status_t MPEG4Extractor::parseChunk(off64_t *offset, int depth) {
+@@ -1170,12 +1170,15 @@ status_t MPEG4Extractor::parseChunk(off64_t *offset, int depth) {
              // tenc box contains 1 byte version, 3 byte flags, 3 byte default algorithm id, one byte
              // default IV size, 16 bytes default KeyID
              // (ISO 23001-7)
@@ -75,7 +75,7 @@ index ec1b104..1ca2006 100644
              if (defaultAlgorithmId > 1) {
                  // only 0 (clear) and 1 (AES-128) are valid
                  return ERROR_MALFORMED;
-@@ -1072,7 +1075,7 @@ status_t MPEG4Extractor::parseChunk(off64_t *offset, int depth) {
+@@ -1185,7 +1188,7 @@ status_t MPEG4Extractor::parseChunk(off64_t *offset, int depth) {
              if (mDataSource->readAt(data_offset + 7, buf + 3, 1) < 1) {
                  return ERROR_IO;
              }
@@ -85,10 +85,10 @@ index ec1b104..1ca2006 100644
              if ((defaultAlgorithmId == 0 && defaultIVSize != 0) ||
                      (defaultAlgorithmId != 0 && defaultIVSize == 0)) {
 diff --git a/frameworks/av/services/audioflinger/Effects.cpp b/frameworks/av/services/audioflinger/Effects.cpp
-index bcaf8ae..d35f846 100644
+index d11ac27..1935a7b 100644
 --- a/frameworks/av/services/audioflinger/Effects.cpp
 +++ b/frameworks/av/services/audioflinger/Effects.cpp
-@@ -395,7 +395,8 @@ status_t AudioFlinger::EffectModule::configure()
+@@ -485,7 +485,8 @@ status_t AudioFlinger::EffectModule::configure()
          p->psize = sizeof(uint32_t);
          p->vsize = sizeof(uint32_t);
          size = sizeof(int);
@@ -98,7 +98,7 @@ index bcaf8ae..d35f846 100644
  
          uint32_t latency = 0;
          PlaybackThread *pbt = thread->mAudioFlinger->checkPlaybackThread_l(thread->mId);
-@@ -403,7 +404,7 @@ status_t AudioFlinger::EffectModule::configure()
+@@ -493,7 +494,7 @@ status_t AudioFlinger::EffectModule::configure()
              latency = pbt->latency_l();
          }
  

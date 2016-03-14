@@ -362,4 +362,12 @@
     proportionally to the smaller buckets. -1 keeps the default. -->
     <integer name="config_lowMemoryKillerMinFreeKbytesAbsolute">122880</integer>
 
+    <!-- Package names containing location provider support -->
+    <string-array name="config_locationProviderPackageNames" translatable="false">
+        <!-- The Google provider -->
+        <item>com.google.android.gms</item>
+        <!-- The standard AOSP fused location provider -->
+        <item>com.android.location.fused</item>
+    </string-array>
+
 </resources>

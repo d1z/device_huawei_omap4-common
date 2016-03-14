@@ -14,6 +14,12 @@
 # limitations under the License.
 #
 
+DEVCOMMON_PATH := device/huawei/omap4-common
+
 # Replace Camera2 to Snap
 PRODUCT_PACKAGES += \
     Snap
+
+# Media / Audio
+PRODUCT_COPY_FILES += \
+    $(DEVCOMMON_PATH)/configs/media/media_codecs_ffmpeg.xml:system/etc/media_codecs_ffmpeg.xml
